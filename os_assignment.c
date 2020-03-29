@@ -21,6 +21,35 @@ void input(struct student list[], int s)
     } 
 }
 
+
+void scheduling(struct student list[], int s)
+{
+    int i, j;
+    struct student temp;
+    
+    for (i = 0; i < s - 1; i++)
+    {
+        for (j = 0; j < (s - 1-i); j++)
+        {
+            if (list[j].FTakenTime < list[j + 1].FTakenTime)
+            {
+                temp = list[j];
+                list[j] = list[j + 1];
+                list[j + 1] = temp;
+            } 
+            else if(list[j].FTakenTime == list[j + 1].FTakenTime)
+            {
+            	if(list[j].StudentId > list[j + 1].StudentId)
+            	{
+            	temp = list[j];
+                list[j] = list[j + 1];
+                list[j + 1] = temp;
+                }
+			}
+        }
+    }
+}
+
 int main()
 {
     struct student data[20];
@@ -28,5 +57,6 @@ int main()
     printf("Number of Students eating in mess? : ");
     scanf("%d", &n);
     input(data, n);
+    scheduling(data, n);
 }
  
