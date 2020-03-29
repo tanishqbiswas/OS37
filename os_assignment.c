@@ -4,6 +4,7 @@ struct student
 {
     int StudentId;
     int FTakenTime;
+    int WaitingTime;
 };
 
 void input(struct student list[], int s)
@@ -50,6 +51,16 @@ void scheduling(struct student list[], int s)
     }
 }
 
+void waitingTime(struct student list[], int n)
+{
+    int j,total;
+    list[0].WaitingTime=0;
+    for(j=1;j<n;j++)
+    {
+        list[j].WaitingTime=list[j-1].WaitingTime+list[j-1].FTakenTime;
+    }
+}
+
 int main()
 {
     struct student data[20];
@@ -58,5 +69,6 @@ int main()
     scanf("%d", &n);
     input(data, n);
     scheduling(data, n);
+    waitingTime(data,n);
 }
  
