@@ -5,6 +5,7 @@ struct student
     int StudentId;
     int FTakenTime;
     int WaitingTime;
+    int TurnAroundTime;
 };
 
 void input(struct student list[], int s)
@@ -53,11 +54,21 @@ void scheduling(struct student list[], int s)
 
 void waitingTime(struct student list[], int n)
 {
-    int j,total;
+	int j,total;
     list[0].WaitingTime=0;
     for(j=1;j<n;j++)
     {
         list[j].WaitingTime=list[j-1].WaitingTime+list[j-1].FTakenTime;
+    }
+}
+
+void turnAroundTime(struct student list[], int n)
+{
+	int j,total;
+    
+    for(j=0;j<n;j++)
+    {
+        list[j].TurnAroundTime=list[j].WaitingTime+list[j].FTakenTime;
     }
 }
 
@@ -70,5 +81,6 @@ int main()
     input(data, n);
     scheduling(data, n);
     waitingTime(data,n);
+    turnAroundTime(data,n);
 }
  
